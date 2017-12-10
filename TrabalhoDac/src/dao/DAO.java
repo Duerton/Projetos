@@ -1,5 +1,7 @@
 package dao;
 
+import dao.Util.JPAUtil;
+
 import java.util.List;
 
 import javax.persistence.EntityManager;
