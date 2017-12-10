@@ -22,7 +22,7 @@ public class Projeto {
 	private int idProjeto;
 	
 	@OneToOne
-	@JoinColumn(name="idPessoa")
+	@JoinColumn(name="idProfessor")
 	private Professor professor;
 	
 	@OneToMany(mappedBy="projeto")
@@ -46,10 +46,6 @@ public class Projeto {
 
 	public int getId() {
 		return idProjeto;
-	}
-
-	public void setId(int id) {
-		this.idProjeto = id;
 	}
 
 	public Professor getProfessor() {

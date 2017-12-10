@@ -34,12 +34,11 @@ public class Pessoa {
 	@Column(name="senha")
 	private String senha;
 
+	@Column(name="ativo")
+	private boolean ativo;
+
 	public int getId() {
 		return idPessoa;
-	}
-
-	public void setId(int id) {
-		this.idPessoa = id;
 	}
 
 	public String getNome() {
@@ -72,5 +71,13 @@ public class Pessoa {
 
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+
+	public boolean isAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(boolean ativo) {
+		this.ativo = ativo;
 	}
 }

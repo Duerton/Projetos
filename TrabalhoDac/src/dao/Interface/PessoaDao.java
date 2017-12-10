@@ -4,11 +4,13 @@ import modelo.Pessoa;
 
 import java.util.List;
 
-public interface PessoaDao {
+public interface PessoaDao<T> {
 
-    public Pessoa salvar(Pessoa pessoa);
+    public void salvar(T pessoa);
 
-    public Pessoa alterar(Pessoa pessoa);
+    public void alterar(String campo, String novo, String id);
+
+    public List<Pessoa> buscar(String busca);
 
     public List<Pessoa> listarUsuariosPendentes();
 }

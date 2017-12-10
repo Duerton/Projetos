@@ -7,10 +7,10 @@ import java.util.List;
 
 public interface CronogramaDao {
 
-    public Cronograma salvar(Cronograma cronograma);
+    public void salvar(Cronograma cronograma);
 
-    public Cronograma alterar(Cronograma cronograma);
+    public void alterar(String campo, String novo, String id);
 
-    public List<Cronograma> buscar(Projeto projeto);
+    public List<Cronograma> buscar(String busca);
 
 }

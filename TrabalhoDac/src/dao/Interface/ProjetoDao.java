@@ -10,9 +10,9 @@ public interface ProjetoDao {
 
     public List<Projeto> listarTodosProjetos();
 
-    public Projeto salvar(Projeto projeto);
+    public void salvar(Projeto projeto);
 
-    public Projeto alterar(Projeto projeto);
+    public void alterar(String campo, String novo, String id);
 
     public List<Projeto> buscar(String busca);
 

@@ -26,6 +26,10 @@ public class Pessoa_Projeto {
 	@JoinColumn(name="idProjeto")
 	private Projeto projeto;
 
+	public int getIdProjetoAluno() {
+		return idProjetoAluno;
+	}
+
 	public Aluno getAluno() {
 		return aluno;
 	}

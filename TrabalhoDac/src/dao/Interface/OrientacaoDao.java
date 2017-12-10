@@ -1,16 +1,16 @@
 package dao.Interface;
 
-import modelo.Aluno;
+import modelo.Orientacao;
 import modelo.Professor;
 
 import java.util.List;
 
 public interface OrientacaoDao {
 
-    public void salvar(Aluno aluno, Professor professor);
+    public void salvarPedidoOrientacao(Orientacao orientacao);
 
-    public void alterar(Aluno aluno, Professor professor, boolean resposta);
+    public void aceitarPedidoOrientacao(Orientacao orientacao);
 
-    public List<Aluno> listar(Professor professor);
+    public List<Orientacao> listarOrientacoesPendentes(Professor professor);
 
 }
