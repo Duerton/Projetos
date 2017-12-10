@@ -10,8 +10,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Pessoa_Projeto")
-public class Pessoa_Projeto {
+@Table(name="Aluno_Projeto")
+public class Aluno_Projeto {
 	
 	@Id
 	@Column(name="id_ProjetoAluno")
@@ -19,7 +19,7 @@ public class Pessoa_Projeto {
 	private int idProjetoAluno;
 	
 	@ManyToOne
-	@JoinColumn(name="idPessoa")
+	@JoinColumn(name="idAluno")
 	private Aluno aluno;
 	
 	@ManyToOne

@@ -1,5 +1,6 @@
 package modelo;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -26,7 +27,7 @@ public class Projeto {
 	private Professor professor;
 	
 	@OneToMany(mappedBy="projeto")
-	private List<Pessoa_Projeto> Projetopessoa;
+	private List<Aluno_Projeto> Projetopessoa;
 	
 	@OneToOne
 	@JoinColumn(name="idCronograma")
@@ -43,6 +44,9 @@ public class Projeto {
 	
 	@Column(name="bibliografia")
 	private String bibliografia;
+
+	@Column(name="registrado")
+	private Date registrado;
 
 	public int getId() {
 		return idProjeto;
@@ -87,6 +91,13 @@ public class Projeto {
 	public void setBibliografia(String bibliografia) {
 		this.bibliografia = bibliografia;
 	}
-	
-	
+
+	public Date getRegistrado() {
+		return registrado;
+	}
+
+	public void setRegistrado(Date registrado) {
+		this.registrado = registrado;
+	}
+
 }

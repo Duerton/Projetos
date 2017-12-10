@@ -21,6 +21,9 @@ public class Cronograma {
 	
 	@Column(name="dataDefesa")
 	private Date dataDefesa;
+
+	@Column(name="registrado")
+	private Date registrado;
 	
 	@OneToOne(mappedBy="cronograma")
 	private Projeto projeto;
@@ -42,6 +45,14 @@ public class Cronograma {
 
 	public void setDataDefesa(Date dataDefesa) {
 		this.dataDefesa = dataDefesa;
+	}
+
+	public Date getRegistrado() {
+		return registrado;
+	}
+
+	public void setRegistrado(Date registrado) {
+		this.registrado = registrado;
 	}
 
 	/*public List<Date> getDataEntregasParciais() {

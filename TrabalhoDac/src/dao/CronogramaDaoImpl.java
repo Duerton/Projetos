@@ -53,17 +53,17 @@ public class CronogramaDaoImpl implements CronogramaDao {
 
         Root<Projeto> root1 = query.from(Projeto.class);
         Join<Projeto, Professor> joinProfessor = root1.join(Projeto_.professor);
-        SetJoin<Projeto, Pessoa_Projeto> joinAlunoProjeto = root1.join(Projeto_.pessoa_projeto);
+        SetJoin<Projeto, Aluno_Projeto> joinAlunoProjeto = root1.join(Projeto_.aluno_projeto);
 
         Root<Aluno> root2 = query.from(Aluno.class);
-        SetJoin<Aluno, Pessoa_Projeto> joinProjetoAluno = root2.join(Aluno_.pessoa_projeto);
+        SetJoin<Aluno, Aluno_Projeto> joinProjetoAluno = root2.join(Aluno_.aluno_projeto);
 
-        Root<Pessoa_Projeto> root3 = query.from(Pessoa_Projeto.class);
-        SetJoin<Pessoa_Projeto, Aluno> joinAluno = root3.join(Pessoa_Projeto_.alunos);
+        Root<Aluno_Projeto> root3 = query.from(Aluno_Projeto.class);
+        SetJoin<Aluno_Projeto, Aluno> joinAluno = root3.join(Aluno_Projeto_.alunos);
 
         Predicate or =cb.or((cb.equal(joinProjeto.get(Projeto_.titulo),busca)),
                (cb.equal(joinProfessor.get(Professor_.nome),busca)),
-                (cb.equal(joinAlunoProjeto.get(Pessoa_Projeto_.alunos),joinProjetoAluno.get(Pessoa_Projeto_.alunos))),
+                (cb.equal(joinAlunoProjeto.get(Aluno_Projeto_.alunos),joinProjetoAluno.get(Aluno_Projeto_.alunos))),
                 (cb.equal(joinAluno.get(Aluno_.nome),busca)));
 
         query.multiselect(root,root1,root2,root3).where(or);

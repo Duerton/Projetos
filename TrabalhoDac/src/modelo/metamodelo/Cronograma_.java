@@ -12,6 +12,7 @@ import java.util.Date;
 public class Cronograma_ {
     public static volatile SingularAttribute<Cronograma,Integer> id;
     public static volatile SingularAttribute<Cronograma,Date> dataDefesa;
-    public static volatile SingularAttribute<Cronograma, Projeto> projeto;
+    public static volatile SingularAttribute<Cronograma,Projeto> projeto;
+    public static volatile SingularAttribute<Cronograma,Date> registrado;
 
 }

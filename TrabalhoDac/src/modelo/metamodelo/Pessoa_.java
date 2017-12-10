@@ -4,6 +4,7 @@ import modelo.Pessoa;
 
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
+import java.util.Date;
 
 @StaticMetamodel(Pessoa.class)
 public class Pessoa_ {
@@ -13,4 +14,5 @@ public class Pessoa_ {
     public static volatile SingularAttribute<Pessoa,String> login;
     public static volatile SingularAttribute<Pessoa,String> senha;
     public static volatile SingularAttribute<Pessoa,Boolean> ativo;
+    public static volatile SingularAttribute<Pessoa,Date> registrado;
 }

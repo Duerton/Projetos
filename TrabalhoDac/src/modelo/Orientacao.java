@@ -2,6 +2,7 @@ package modelo;
 
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name="Orientacao")
@@ -19,6 +20,9 @@ public class Orientacao {
     @ManyToOne
     @JoinColumn(name="idAluno")
     private Aluno aluno;
+
+    @Column(name="registrado")
+    private Date registrado;
 
     @Column(name="aceito")
     private boolean aceito;
@@ -41,6 +45,14 @@ public class Orientacao {
 
     public void setAluno(Aluno aluno) {
         this.aluno = aluno;
+    }
+
+    public Date getRegistrado() {
+        return registrado;
+    }
+
+    public void setRegistrado(Date registrado) {
+        this.registrado = registrado;
     }
 
     public boolean isAceito() {

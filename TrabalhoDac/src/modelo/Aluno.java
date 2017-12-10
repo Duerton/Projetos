@@ -15,7 +15,7 @@ public class Aluno extends Pessoa{
 	private long matricula;
 	
 	@OneToMany(mappedBy="aluno")
-	private List<Pessoa_Projeto> pessoaProjeto;
+	private List<Aluno_Projeto> pessoaProjeto;
 
 	public long getMatricula() {
 		return matricula;

@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
+import java.util.Date;
 
 @Entity
 @Table(name="Pessoa")
@@ -36,6 +37,9 @@ public class Pessoa {
 
 	@Column(name="ativo")
 	private boolean ativo;
+
+	@Column(name="registrado")
+	private Date registrado;
 
 	public int getId() {
 		return idPessoa;
@@ -71,6 +75,14 @@ public class Pessoa {
 
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+
+	public Date getRegistrado() {
+		return registrado;
+	}
+
+	public void setRegistrado(Date registrado) {
+		this.registrado = registrado;
 	}
 
 	public boolean isAtivo() {

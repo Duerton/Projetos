@@ -5,6 +5,8 @@ import javax.persistence.EntityManager;
 import dao.Util.JPAUtil;
 import modelo.Aluno;
 
+import java.util.Date;
+
 public class teste {
 
 	
@@ -16,6 +18,7 @@ public class teste {
 		aluno.setLogin("duerton");
 		aluno.setNome("Duerton");
 		aluno.setSenha("duerton");
+		aluno.setRegistrado(new Date());
 		
 		EntityManager em = new JPAUtil().getEntityManager();
 
