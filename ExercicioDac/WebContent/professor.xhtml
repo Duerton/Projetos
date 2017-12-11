@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:body>
+	<h1>Professor</h1>
+	<h:form>
+		<fieldset>
+			<legend>Dados do Professor</legend>
+			<h:panelGrid columns="2">
+				<h:outputLabel value="Titulacao: " for="titulacao" />
+				<h:inputText id="titulacao" value="#{professorBean.professor.titulacao}" />
+				<h:outputLabel  value="Nome:" for="nome"/>
+				<h:inputText id="nome" value="#{professorBean.professor.nome}"/>
+				<h:outputLabel  value="Email:" for="email"/>
+				<h:inputText id="email" value="#{professorBean.professor.email}"/>
+				<h:commandButton value="Gravar" action="#{professorBean.gravar}"></h:commandButton>
+			</h:panelGrid>
+		</fieldset>
+	</h:form>
+	
+	<h:dataTable value="#{professorBean.professores}" var="professor">
+			<h:column>
+				<f:facet name="header">Titulação</f:facet>
+				<h:outputText value="#{professor.titulacao}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Nome</f:facet>
+				<h:outputText value="#{professor.nome}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">email</f:facet>
+				<h:outputText value="#{professor.email}" />
+			</h:column>
+	</h:dataTable>
+	
+</h:body>
+</html>
