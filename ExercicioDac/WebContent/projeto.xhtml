@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:f="http://java.sun.com/jsf/core">
+
+
+<h:body>
+	<h1>Projeto</h1>
+	<h:form>
+		<fieldset>
+			<legend>Editar dados do projeto:</legend>
+			<h:panelGrid columns="2">
+				<h:outputLabel  value="Titulo:" for="titulo"/>
+				<h:inputText id="nome" value="#{projetoBean.projeto.titulo}"/>
+				<h:outputLabel  value="Orientador:" for="orientador"/>
+				<h:inputText id="orientador" value="#{projetoBean.projeto.professor}"/>
+				<h:outputLabel  value="Aluno:" for="aluno"/>
+			</h:panelGrid>
+			
+				<h:commandButton value="Gravar" action="#{projetoBean.gravar}">
+				</h:commandButton>
+		</fieldset>
+	</h:form><!-- 
+	
+	<h:dataTable value="#{pessoaBean.pessoas}" var="pessoa">
+			<h:column>
+				<f:facet name="header">Nome</f:facet>
+				<h:outputText value="#{pessoa.nome}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">email</f:facet>
+				<h:outputText value="#{pessoa.email}" />
+			</h:column>
+	</h:dataTable> -->
+</h:body>
+</html>
