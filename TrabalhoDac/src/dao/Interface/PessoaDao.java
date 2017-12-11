@@ -10,7 +10,7 @@ public interface PessoaDao<T> {
 
     public void alterar(String campo, String novo, String id);
 
-    public List<Pessoa> buscar(String busca);
+    public List<T> buscar(String busca);
 
-    public List<Pessoa> listarUsuariosPendentes();
+    public List<T> listarUsuariosPendentes();
 }

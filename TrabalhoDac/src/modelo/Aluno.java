@@ -15,7 +15,7 @@ public class Aluno extends Pessoa{
 	private long matricula;
 	
 	@OneToMany(mappedBy="aluno")
-	private List<Aluno_Projeto> pessoaProjeto;
+	private List<Aluno_Projeto> aluno_Projeto;
 
 	public long getMatricula() {
 		return matricula;
@@ -23,5 +23,13 @@ public class Aluno extends Pessoa{
 
 	public void setMatricula(long matricula) {
 		this.matricula = matricula;
+	}
+
+	@Override
+	public String toString() {
+		return super.toString() + "Aluno{" +
+				"matricula=" + matricula +
+				", aluno_Projeto=" + aluno_Projeto +
+				'}';
 	}
 }

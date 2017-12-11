@@ -22,6 +22,12 @@ public class Professor extends Pessoa{
 	public void setTitulacao(String titulacao) {
 		this.titulacao = titulacao;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return super.toString() + "Professor{" +
+				"titulacao='" + titulacao + '\'' +
+				", projeto=" + projeto +
+				'}';
+	}
 }

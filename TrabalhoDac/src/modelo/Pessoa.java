@@ -92,4 +92,17 @@ public class Pessoa {
 	public void setAtivo(boolean ativo) {
 		this.ativo = ativo;
 	}
+
+	@Override
+	public String toString() {
+		return "Pessoa{" +
+				"idPessoa=" + idPessoa +
+				", nome='" + nome + '\'' +
+				", email='" + email + '\'' +
+				", login='" + login + '\'' +
+				", senha='" + senha + '\'' +
+				", ativo=" + ativo +
+				", registrado=" + registrado +
+				"}\n";
+	}
 }

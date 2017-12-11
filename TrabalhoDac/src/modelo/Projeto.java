@@ -100,4 +100,18 @@ public class Projeto {
 		this.registrado = registrado;
 	}
 
+	@Override
+	public String toString() {
+		return "Projeto{" +
+				"idProjeto=" + idProjeto +
+				", professor=" + professor +
+				", Projetopessoa=" + Projetopessoa +
+				", cronograma=" + cronograma +
+				", nota=" + nota +
+				", titulo='" + titulo + '\'' +
+				", resumo='" + resumo + '\'' +
+				", bibliografia='" + bibliografia + '\'' +
+				", registrado=" + registrado +
+				'}';
+	}
 }

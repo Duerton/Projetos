@@ -49,16 +49,16 @@ public class PessoaDaoImpl<T> implements PessoaDao{
     }
 
     @Override
-    public List<Pessoa> buscar(String busca) {
+    public List<T> buscar(String busca) {
 
         em.getTransaction().begin();
         CriteriaBuilder cb = em.getCriteriaBuilder();
-        CriteriaQuery<Pessoa> query = cb.createQuery(Pessoa.class);
-        Root<Pessoa> root = query.from(Pessoa.class);
+        CriteriaQuery<T> query = cb.createQuery(classe);
+        Root<T> root = query.from(classe);
 
-        query.select(root).where(cb.equal(root.get(Pessoa_.nome),busca));
+        query.select(root).where(cb.equal(root.get("nome"),busca));
 
-        List<Pessoa> lista = null;
+        List<T> lista = null;
         try {
             lista = em.createQuery(query).getResultList();
         } catch(Exception e){
@@ -77,7 +77,8 @@ public class PessoaDaoImpl<T> implements PessoaDao{
         CriteriaQuery<T> query = cb.createQuery(classe);
         Root<T> root = query.from(classe);
 
-        query.select(root).where((Predicate) Restrictions.eq("ativo",false));
+        Predicate predicate = cb.equal(root.get("ativo"),false);
+        query.select(root).where(predicate);
 
         List<T> lista = null;
         try {

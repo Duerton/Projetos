@@ -62,6 +62,14 @@ public class Cronograma {
 	public void setDataEntregasParciais(List<Date> dataEntregasParciais) {
 		this.dataEntregasParciais = dataEntregasParciais;
 	}*/
-	
-	
+
+	@Override
+	public String toString() {
+		return "Cronograma{" +
+				"idCronograma=" + idCronograma +
+				", dataDefesa=" + dataDefesa +
+				", registrado=" + registrado +
+				", projeto=" + projeto +
+				'}';
+	}
 }

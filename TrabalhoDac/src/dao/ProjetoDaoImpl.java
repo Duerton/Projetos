@@ -23,7 +23,7 @@ public class ProjetoDaoImpl implements ProjetoDao {
         CriteriaQuery<Projeto> query = cb.createQuery(Projeto.class);
         Root<Projeto> root = query.from(Projeto.class);
 
-        query.select(root).where(cb.isNull(root.get(Projeto_.cronograma)));
+        query.select(root).where(cb.isNull(root.get("cronograma")));
 
         List<Projeto> lista = null;
         try {

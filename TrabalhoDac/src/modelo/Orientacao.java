@@ -62,4 +62,15 @@ public class Orientacao {
     public void setAceito(boolean aceito) {
         this.aceito = aceito;
     }
+
+    @Override
+    public String toString() {
+        return "Orientacao{" +
+                "id_orientacao=" + id_orientacao +
+                ", professor=" + professor +
+                ", aluno=" + aluno +
+                ", registrado=" + registrado +
+                ", aceito=" + aceito +
+                '}';
+    }
 }
