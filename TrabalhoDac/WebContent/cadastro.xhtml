@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:p="http://primefaces.org/ui">
+
+<script>
+function yesnoCheck() {
+    if (document.getElementById('yesCheck').checked) {
+        document.getElementById('ifYes').style.visibility = 'visible';
+    }
+    else document.getElementById('ifYes').style.visibility = 'hidden';
+
+}
+</script>
+
+<h:body>
+	<h1>Cadastro</h1>
+	<h:form>
+		<fieldset>
+			<legend>Preencha os dados abaixo</legend>
+			<h:panelGrid columns="2">
+				<h:outputLabel  value="Nome:" for="nome"/>
+				<h:inputText id="nome" value="#{pessoaBean.pessoa.nome}"/>
+				<h:outputLabel  value="Email:" for="email"/>
+				<h:inputText id="email" value="#{pessoaBean.pessoa.email}"/>
+				<h:outputLabel  value="Login:" for="login"/>
+				<h:inputText id="login" value="#{pessoaBean.pessoa.login}"/>
+				<h:outputLabel  value="Senha:" for="senha"/>
+				<h:inputText id="senha" value="#{pessoaBean.pessoa.senha}"/>
+				<h:outputLabel  value="Qual tipo de cadastro quer realizar?:"/>
+				<h:selectOneRadio value="pessoaBean.tipo">
+					<f:selectItem itemValue="A" itemLabel="Aluno"/>
+					<f:selectItem itemValue="P" itemLabel="Professor"/>
+					<f:selectItem itemValue="D" itemLabel="Administrador"/>
+				</h:selectOneRadio>
+			</h:panelGrid>
+			
+				<h:commandButton value="Gravar" action="#{pessoaBean.gravar}">
+				</h:commandButton>
+		</fieldset>
+		
+		<br/>
+		
+		<h:commandLink value="Voltar para tela inicial" action="inicial"/>
+		<p:dataTable value="#{pessoaBean.pessoas}" var="pessoa">
+			<p:column headerText="Pessoa" sortBy="#{pessoa.nome}" filterBy="#{pessoa.nome}">
+                <h:outputText value="#{pessoa.nome}" />
+            </p:column>
+            <p:column headerText="Email" sortBy="#{pessoa.email}" filterBy="#{pessoa.email}">
+                <h:outputText value="#{pessoa.email}" />
+            </p:column>
+		</p:dataTable>
+		<!-- <h:dataTable value="#{pessoaBean.pessoas}" var="pessoa">
+			<h:column>
+				<f:facet name="header">Nome</f:facet>
+				<h:outputText value="#{pessoa.nome}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">email</f:facet>
+				<h:outputText value="#{pessoa.email}" />
+			</h:column>
+		</h:dataTable> -->
+	</h:form>
+	
+	<h:form></h>
+	Yes <input type="radio" onclick="javascript:yesnoCheck();" name="yesno" id="yesCheck"> No <input type="radio" onclick="javascript:yesnoCheck();" name="yesno" id="noCheck"><br>
+    <div id="ifYes" style="visibility:hidden">
+        If yes, explain: <input type='text' id='yes' name='yes'><br>
+        What can we do to accommodate you?  <input type='text' id='acc' name='acc'>
+    </div>
+        
+        other 3<input type='text' id='other3' name='other3'><br>
+        other 4<input type='text' id='other4' name='other4'><br>
+	</h:form>
+</h:body>
+</html>
