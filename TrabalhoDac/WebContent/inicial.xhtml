@@ -1,43 +1,187 @@
-<?xml version="1.0" encoding="ISO-8859-1" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-		xmlns:h="http://java.sun.com/jsf/html"
-		xmlns:f="http://java.sun.com/jsf/core"
-		xmlns:p="http://primefaces.org/ui">
-		
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Navbar</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+<!DOCTYPE html>
+<html lang="pt"
+xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:c="http://java.sun.com/jsf/jstl/core"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:f="http://java.sun.com/jsf/core">
+<head>
+  <title>TrabalhoDac</title>
+  <meta charset="utf-8"></meta>
+  <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+</head>
+<body>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
-      </li>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/TrabalhoDac/inicial.xhtml">UFFormando</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="/TrabalhoDac/inicial.xhtml">Início</a></li>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"></input>
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+    <p class="navbar-text">Aqui você pode pesquisar os projetos finais de todos os alunos e professores registrados.</p>
   </div>
 </nav>
+
+<div class="col-md-4">
+	<div class="login-panel panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Entrar ou Cadastrar-se</h3>
+        </div>
+        <div class="panel-body">
+            <form role="form" action="#{pessoaBean.entrar()}">
+                <fieldset>
+                    <div class="form-group">
+                        <input class="form-control" placeholder="Login" name="login" type="text" value="#{pessoaBean.pessoa.login}"/>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" placeholder="Senha" name="senha" type="password" value="#{pessoaBean.pessoa.senha}"/>
+                    </div>
+                    <div class="form-group">
+						<div class="col-sm col-sm-10">
+                    		<a href="javascript:;" class="btn btn-sm btn-success">Login</a>
+                    	</div>
+                    	</div>
+                </fieldset>
+            </form>
+        </div>
+        <div class="panel-body">
+            <form role="form" action="#{pessoaBean.cadastrar}">
+                <fieldset>
+                    <div class="form-group">
+                        <input class="form-control" placeholder="Nome" name="nome" type="text" value="#{pessoaBean.pessoa.nome}"/>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" placeholder="E-mail" name="email" type="email" value="#{pessoaBean.pessoa.email}"/>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" placeholder="Login" name="login" type="text" value="#{pessoaBean.pessoa.login}"/>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" placeholder="Senha" name="senha" type="password" value="#{pessoaBean.pessoa.senha}"/>
+                    </div>
+                    <div>
+						<div class="col-sm col-sm-3">
+	                    	Eu sou
+	                    </div>	              
+						<div class="col-sm col-sm-4">
+	                    	<input type="radio" onclick="javascript:yesnoCheck();" name="yesno" id="yesCheck"/> Aluno  
+                    	</div>
+	                    <input type="radio" onclick="javascript:yesnoCheck();" name="yesno" id="noCheck"/> Professor
+                    </div>
+                   	<div id="ifYes" style="visibility:hidden">
+                       	<input class="form-control" placeholder="Matrícula" name="matricula" type="text"  value="#{pessoaBean.pessoa.matricula}"/>
+                    </div>
+                   	<div id="ifNo" style="visibility:hidden" class="form-group">
+                       	<input class="form-control" placeholder="Titulação" name="titulacao" type="text" value="#{pessoaBean.pessoa.titulacao}"/>
+                    </div>
+                    <div class="form-group">
+						<div class="col-sm col-sm-10">
+                    		<a href="javascript:;" class="btn btn-sm btn-success">Cadastrar</a>
+                    	</div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+function yesnoCheck() {
+    if (document.getElementById('yesCheck').checked) {
+        document.getElementById('ifYes').style.visibility = 'visible';
+        document.getElementById('ifNo').style.visibility = 'hidden';
+    }
+    else {
+    	document.getElementById('ifYes').style.visibility = 'hidden';
+    	document.getElementById('ifNo').style.visibility = 'visible';
+    }
+}
+</script>
+
+
+<head>
+	<style>
+		* {
+		  box-sizing: border-box;
+		}
+		
+		#myInput {
+		  width: 60%;
+		  font-size: 16px;
+		  padding: 12px 20px ;
+		  border: 1px solid #ddd;
+		  margin-bottom: 12px;
+		}
+		
+		#myUL {
+		  list-style-type: none;
+		  padding: 0;
+		  margin: 0;
+		}
+		
+		#myUL li a {
+		  border: 1px solid #ddd;
+		  margin-top: -1px; /* Prevent double borders */
+		  background-color: #f6f6f6;
+		  padding: 12px;
+		  text-decoration: none;
+		  font-size: 18px;
+		  color: black;
+		  display: block
+		}
+		
+		#myUL li a:hover:not(.header) {
+		  background-color: #eee;
+		}
+	</style>
+</head>
+
+<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Procurar" title="Type in a name"/>
+
+<table id="myTable">
+  <tr class="header">
+    <th style="width:40%;">Projeto</th>
+    <th style="width:40%;">Aluno</th>
+    <th style="width:40%;">Professor</th>
+  </tr>
+  <h:dataTable value="#{projetoBean.listarTodosProjetos}" var="projeto">
+	  <tr>
+	    <td>#{projeto.titulo}</td>
+	    <td>#{projeto.aluno.nome}</td>
+	    <td>#{projeto.professor.nome}</td>
+	  </tr>
+  </h:dataTable>
+</table>
+
+
+
+<script>
+//<![CDATA[
+	function myFunction() {
+	  var input, filter, table, tr, td, i;
+	  input = document.getElementById("myInput");
+	  filter = input.value.toUpperCase();
+	  table = document.getElementById("myTable");
+	  tr = table.getElementsByTagName("tr");
+	  for (i = 0; i < tr.length; i++) {
+	    td = tr[i].getElementsByTagName("td")[0];
+	    if (td) {
+	      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+	        tr[i].style.display = "";
+	      } else {
+	        tr[i].style.display = "none";
+	      }
+	    }       
+	  }
+	}
+	//]]>
+</script>
+
+</body>
 </html>
