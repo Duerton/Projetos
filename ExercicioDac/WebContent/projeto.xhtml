@@ -15,13 +15,12 @@
 				<h:inputText id="nome" value="#{projetoBean.projeto.titulo}"/>
 				<h:outputLabel  value="Orientador:" for="orientador"/>
 				<h:inputText id="orientador" value="#{projetoBean.projeto.professor}"/>
-				<h:outputLabel  value="Aluno:" for="aluno"/>
 			</h:panelGrid>
 			
 				<h:commandButton value="Gravar" action="#{projetoBean.gravar}">
 				</h:commandButton>
 		</fieldset>
-	</h:form><!-- 
+	</h:form>
 	
 	<h:dataTable value="#{pessoaBean.pessoas}" var="pessoa">
 			<h:column>
@@ -32,6 +31,6 @@
 				<f:facet name="header">email</f:facet>
 				<h:outputText value="#{pessoa.email}" />
 			</h:column>
-	</h:dataTable> -->
+	</h:dataTable>
 </h:body>
 </html>

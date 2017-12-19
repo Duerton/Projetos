@@ -1,42 +1,153 @@
-<?xml version="1.0" encoding="ISO-8859-1" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-		xmlns:h="http://java.sun.com/jsf/html"
-		xmlns:f="http://java.sun.com/jsf/core"
-		xmlns:p="http://primefaces.org/ui">
+<!DOCTYPE html>
+<html lang="pt"
+xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:c="http://java.sun.com/jsf/jstl/core"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:p="http://primefaces.org/ui">
+<head>
+  <title>TrabalhoDac</title>
+  <meta charset="utf-8"></meta>
+  <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/ExercicioDac/inicial.xhtml">UFFormando</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="/ExercicioDac/inicial.xhtml">Início</a></li>
+    </ul>
+    <p class="navbar-text">Aqui você pode pesquisar os projetos finais de todos os alunos e professores registrados.</p>
+  </div>
+</nav>
+
+<div class="col-md-4">
+	<div class="login-panel panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Entrar ou Cadastrar-se</h3>
+        </div>
+        <div class="panel-body">
+            <form role="form" >
+                <fieldset>
+                    <h:form id="f" style="width: 40%;  margin: 0 auto;" >
+						<h:panelGrid columns="2">
+												
+							<h:outputLabel value="Login: "/>
+							<h:inputText value="#{pessoaBean.pessoa.login}" required="true" id="login" />
+								
+							<h:outputLabel value="Senha: " />
+							<h:inputSecret value="#{pessoaBean.pessoa.senha}" required="true" id="senha" />
+		
+						    <f:facet name="footer">  
+								<h:commandButton value="Logar" action="#{pessoaBean.efetuaLogin}" />
+							</f:facet>
+						</h:panelGrid>
+					</h:form>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+function yesnoCheck() {
+    if (document.getElementById('yesCheck').checked) {
+        document.getElementById('ifYes').style.visibility = 'visible';
+        document.getElementById('ifNo').style.visibility = 'hidden';
+    }
+    else {
+    	document.getElementById('ifYes').style.visibility = 'hidden';
+    	document.getElementById('ifNo').style.visibility = 'visible';
+    }
+}
+</script>
 
 
-<h:body>
-	<h:form>
-		<h:dataTable value="#{projetoBean.projetos}" var="projeto">
-			<h:column>
-				<f:facet name="header">Projeto</f:facet>
-				<h:outputText value="#{projeto.titulo}" />
-			</h:column>
-			<h:column>
-				<f:facet name="header">Professor</f:facet>
-				<h:outputText value="#{projeto.professor}" />
-			</h:column>
-		</h:dataTable>
+<head>
+	<style>
+		* {
+		  box-sizing: border-box;
+		}
 		
-		<h:dataTable value="#{professorBean.professores}" var="professor">
-			<h:column>
-				<f:facet name="header">Nome</f:facet>
-				<h:outputText value="#{professor.nome}" />
-			</h:column>
-			<h:column>
-				<f:facet name="header">Professor</f:facet>
-				<h:outputText value="#{professor.projeto.titulo}" />
-			</h:column>
-		</h:dataTable>
-	</h:form>
-	
-	<br/>
+		#myInput {
+		  width: 60%;
+		  font-size: 16px;
+		  padding: 12px 20px ;
+		  border: 1px solid #ddd;
+		  margin-bottom: 12px;
+		}
 		
-	<h:commandLink value="Cadastrar novo usu�rio" action="cadastro"/>
-	
-	<br/>
+		#myUL {
+		  list-style-type: none;
+		  padding: 0;
+		  margin: 0;
+		}
 		
-	<h:commandLink value="Efetuar login" action="login"/>
-</h:body>
+		#myUL li a {
+		  border: 1px solid #ddd;
+		  margin-top: -1px; /* Prevent double borders */
+		  background-color: #f6f6f6;
+		  padding: 12px;
+		  text-decoration: none;
+		  font-size: 18px;
+		  color: black;
+		  display: block
+		}
+		
+		#myUL li a:hover:not(.header) {
+		  background-color: #eee;
+		}
+	</style>
+</head>
+
+<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Procurar" title="Type in a name"/>
+
+<table id="myTable">
+  <h:dataTable value="#{projetoBean.projetos}" var="projeto">
+	  <tr>
+	    <h:column>
+			<f:facet name="header">Titulo projeto</f:facet>
+			<h:outputText value="#{projeto.titulo}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">Orientador</f:facet>
+			<h:outputText value="#{projeto.professor.nome}" />
+		</h:column>
+	  </tr>
+  </h:dataTable>
+</table>
+
+
+
+<script>
+//<![CDATA[
+	function myFunction() {
+	  var input, filter, table, tr, td, i;
+	  input = document.getElementById("myInput");
+	  filter = input.value.toUpperCase();
+	  table = document.getElementById("myTable");
+	  tr = table.getElementsByTagName("tr");
+	  for (i = 0; i < tr.length; i++) {
+	    td = tr[i].getElementsByTagName("td")[0];
+	    if (td) {
+	      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+	        tr[i].style.display = "";
+	      } else {
+	        tr[i].style.display = "none";
+	      }
+	    }       
+	  }
+	}
+	//]]>
+</script>
+
+</body>
 </html>

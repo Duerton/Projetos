@@ -5,6 +5,15 @@
 		xmlns:f="http://java.sun.com/jsf/core"
 		xmlns:p="http://primefaces.org/ui">
 
+<script>
+function yesnoCheck() {
+    if (document.getElementById('yesCheck').checked) {
+        document.getElementById('ifYes').style.visibility = 'visible';
+    }
+    else document.getElementById('ifYes').style.visibility = 'hidden';
+
+}
+</script>
 
 <h:body>
 	<h1>Cadastro</h1>
@@ -19,13 +28,7 @@
 				<h:outputLabel  value="Login:" for="login"/>
 				<h:inputText id="login" value="#{pessoaBean.pessoa.login}"/>
 				<h:outputLabel  value="Senha:" for="senha"/>
-				<h:inputText id="senha" value="#{pessoaBean.pessoa.senha}"/>
-				<h:outputLabel  value="Qual tipo de cadastro quer realizar?:"/>
-				<h:selectOneRadio value="pessoaBean.tipo">
-					<f:selectItem itemValue="A" itemLabel="Aluno"/>
-					<f:selectItem itemValue="P" itemLabel="Professor"/>
-					<f:selectItem itemValue="D" itemLabel="Administrador"/>
-				</h:selectOneRadio>
+				<h:inputSecret id="senha" value="#{pessoaBean.pessoa.senha}"/>
 			</h:panelGrid>
 			
 				<h:commandButton value="Gravar" action="#{pessoaBean.gravar}">
