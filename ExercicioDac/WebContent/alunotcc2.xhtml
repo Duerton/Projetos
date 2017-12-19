@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt"
+xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:f="http://java.sun.com/jsf/core">
+<head>
+  <title>TrabalhoDac</title>
+  <meta charset="utf-8"></meta>
+  <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/TrabalhoDac/inicial.xhtml">UFFormando</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="/TrabalhoDac/inicial.xhtml">Início</a></li>
+    </ul>
+    
+
+
+
+
+    <p class="navbar-text">Aqui você pode pesquisar os projetos finais de todos os alunos e professores registrados.</p>
+  </div>
+</nav>
+
+
+<div class="col-md-4">
+	<div class="container">
+	    <div class="row">
+	        <div class="col-sm-4 col-md-4">
+	    		<h1>Olá, #{pessoa.nome}</h1>
+	            <div class="panel-group" id="accordion">
+	                <div class="panel panel-default">
+	                    <div class="panel-heading">
+	                        <h4 class="panel-title">
+	                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-pencil">
+	                            </span> 	Editar dados pessoas</a>
+	                        </h4>
+	                    </div>
+	                    <div id="collapseOne" class="panel-collapse collapse in">
+	                        <div class="panel-body">
+	                            <table class="table">
+	                                <tr>
+	                                    <td>
+	                                        <a href="http://www.jquery2dotnet.com">Nome</a>
+	                                    </td>
+	                                </tr>
+	                                <tr>
+	                                    <td>
+	                                        <a href="http://www.jquery2dotnet.com">E-mail</a>
+	                                    </td>
+	                                </tr>
+	                                <tr>
+	                                    <td>
+	                                        <a href="http://www.jquery2dotnet.com">Senha</a>
+	                                    </td>
+	                                </tr>
+	                            </table>
+	                        </div>
+	                    </div>
+	                </div>
+	                <div class="panel panel-default">
+	                    <div class="panel-heading">
+	                        <h4 class="panel-title">
+	                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><span class="glyphicon glyphicon-pencil">
+	                            </span> Arquivos PDF</a>
+	                        </h4>
+	                    </div>
+	                    <div id="collapseTwo" class="panel-collapse collapse">
+	                        <div class="panel-body">
+	                            <table class="table">
+	                                <tr>
+	                                    <td>
+	                                        <a href="http://www.jquery2dotnet.com">Enviar</a>
+	                                    </td>
+	                                </tr>
+	                                <tr>
+	                                    <td>
+	                                        <a href="http://www.jquery2dotnet.com">Visualizar</a>
+	                                    </td>
+	                                </tr>
+	                            </table>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+</div>
+
+<head>
+	<style>
+		* {
+		  box-sizing: border-box;
+		}
+		
+		#myInput {
+		  width: 60%;
+		  font-size: 16px;
+		  padding: 12px 20px ;
+		  border: 1px solid #ddd;
+		  margin-bottom: 12px;
+		}
+		
+		#myUL {
+		  list-style-type: none;
+		  padding: 0;
+		  margin: 0;
+		}
+		
+		#myUL li a {
+		  border: 1px solid #ddd;
+		  margin-top: -1px; /* Prevent double borders */
+		  background-color: #f6f6f6;
+		  padding: 12px;
+		  text-decoration: none;
+		  font-size: 18px;
+		  color: black;
+		  display: block
+		}
+		
+		#myUL li a:hover:not(.header) {
+		  background-color: #eee;
+		}
+	</style>
+</head>
+
+<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Procurar" title="Type in a name"/>
+
+<table id="myTable">
+  <tr class="header">
+    <th style="width:40%;">Projeto</th>
+    <th style="width:40%;">Aluno</th>
+    <th style="width:40%;">Professor</th>
+  </tr>
+  <h:dataTable value="#{projetoBean.listarTodosProjetos}" var="projeto">
+	  <tr>
+	    <td>#{projeto.titulo}</td>
+	    <td>#{projeto.aluno.nome}</td>
+	    <td>#{projeto.professor.nome}</td>
+	  </tr>
+  </h:dataTable>
+</table>
+
+
+
+<script>
+//<![CDATA[
+	function myFunction() {
+	  var input, filter, table, tr, td, i;
+	  input = document.getElementById("myInput");
+	  filter = input.value.toUpperCase();
+	  table = document.getElementById("myTable");
+	  tr = table.getElementsByTagName("tr");
+	  for (i = 0; i < tr.length; i++) {
+	    td = tr[i].getElementsByTagName("td")[0];
+	    if (td) {
+	      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+	        tr[i].style.display = "";
+	      } else {
+	        tr[i].style.display = "none";
+	      }
+	    }       
+	  }
+	}
+	//]]>
+</script>
+
+</body>
+</html>
