@@ -20,7 +20,7 @@ public class Pessoa {
 	@Id
 	@Column(name="id_Pessoa")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer idPessoa;
+	private Integer id;
 
 	@Column(name="nome")
 	private String nome;
@@ -35,11 +35,11 @@ public class Pessoa {
 	private String senha;
 
 	public int getId() {
-		return idPessoa;
+		return id;
 	}
 
 	public void setId(int id) {
-		this.idPessoa = id;
+		this.id = id;
 	}
 
 	public String getNome() {

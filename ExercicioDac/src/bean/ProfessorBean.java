@@ -4,23 +4,24 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 
-import dao.DAO;
+import dao.PessoaDao;
 import modelo.Professor;
 
 @ManagedBean
 public class ProfessorBean {
 
 	private Professor professor = new Professor();
+	private PessoaDao dao = new PessoaDao();
 	
 	public Professor getProfessor() {
 		return professor;
 	}
 	
 	public List<Professor> getProfessores() {
-		return new DAO<Professor>(Professor.class).listaTodos();
+		return dao.listarTodosProfessores();
 	}
 	
-	public void gravar() {
-		new DAO<Professor>(Professor.class).adiciona(this.professor);
+	public void gravar(Professor professor) {
+		dao.salvar(professor);;
 	}
 }

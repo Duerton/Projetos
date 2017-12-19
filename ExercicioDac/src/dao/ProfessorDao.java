@@ -41,6 +41,12 @@ public class ProfessorDao {
         em.close();
     }
     
+    public Professor buscaPorId(Integer id) {
+    	TypedQuery<Professor> query = em.createQuery("select p from Professor p where p.id = :id", Professor.class);
+    	query.setParameter("id", id);
+        return query.getSingleResult();
+    }
+    
     public List<Professor> listarTodosProfessores(){
         TypedQuery<Professor> query = em.createQuery("select p from Professor p", Professor.class);
         List<Professor> lista = query.getResultList();

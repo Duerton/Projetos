@@ -8,7 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -25,8 +25,9 @@ public class Projeto {
 	@JoinColumn(name="idPessoa")
 	private Professor professor;
 	
-	@OneToMany(mappedBy="projeto")
-	private List<Pessoa_Projeto> Projetopessoa;
+	@ManyToMany
+	@JoinColumn(name="idPessoa")
+	private List<Aluno> aluno;
 	
 	@OneToOne
 	@JoinColumn(name="idCronograma")
@@ -91,6 +92,31 @@ public class Projeto {
 	public void setBibliografia(String bibliografia) {
 		this.bibliografia = bibliografia;
 	}
+
+	public List<Aluno> getAluno() {
+		return aluno;
+	}
+
+	public void setListaAluno(List<Aluno> aluno) {
+		this.aluno = aluno;
+	}
+	
+	public void setAluno(Aluno aluno) {
+		this.aluno.add(aluno);
+	}
+
+	public int getIdProjeto() {
+		return idProjeto;
+	}
+
+	public Cronograma getCronograma() {
+		return cronograma;
+	}
+
+	public void setCronograma(Cronograma cronograma) {
+		this.cronograma = cronograma;
+	}
+	
 	
 	
 }

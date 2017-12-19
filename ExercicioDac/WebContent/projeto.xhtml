@@ -12,25 +12,40 @@
 			<legend>Editar dados do projeto:</legend>
 			<h:panelGrid columns="2">
 				<h:outputLabel  value="Titulo:" for="titulo"/>
-				<h:inputText id="nome" value="#{projetoBean.projeto.titulo}"/>
-				<h:outputLabel  value="Orientador:" for="orientador"/>
-				<h:inputText id="orientador" value="#{projetoBean.projeto.professor}"/>
+				<h:inputText id="titulo" value="#{projetoBean.projeto.titulo}"/>
+				<h:outputLabel  value="Bibliografia:" for="bibiografia"/>
+				<h:inputText id="bibliografia" value="#{projetoBean.projeto.bibliografia}"/>
+				<h:outputLabel  value="Resumo:" for="resumo"/>
+				<h:inputText id="resumo" value="#{projetoBean.projeto.resumo}"/>
+				<h:outputLabel  value="Nota:" for="nota"/>
+				<h:inputText id="nota" value="#{projetoBean.projeto.nota}"/>
 			</h:panelGrid>
 			
 				<h:commandButton value="Gravar" action="#{projetoBean.gravar}">
 				</h:commandButton>
 		</fieldset>
+		
+		<fieldset>
+			<legend>Selecionar Professor:</legend>
+			<h:outputLabel  value="Selecione orientador:" for="orientador"/>
+				<h:selectOneMenu value="#{projetoBean.idProfessor}">
+					<f:selectItems value="#{professorBean.professores}" var="professor" 
+						itemLabel="#{professor.nome}" itemValue="#{professor.id}"/>
+				</h:selectOneMenu>
+				<h:commandButton value="Escolher orientador" action="#{projetoBean.adicionarProfessor}">
+				</h:commandButton>
+		</fieldset>
+		<fieldset>
+			<legend>Selecionar Aluno:</legend>
+			<h:outputLabel  value="Selecione aluno:" for="aluno"/>
+				<h:selectOneMenu value="#{projetoBean.idAluno}">
+					<f:selectItems value="#{alunoBean.alunos}" var="aluno" 
+						itemLabel="#{aluno.nome}" itemValue="#{aluno.id}"/>
+				</h:selectOneMenu>
+				<h:commandButton value="Escolher aluno" action="#{projetoBean.adicionarAluno}">
+				</h:commandButton>
+		</fieldset>
 	</h:form>
 	
-	<h:dataTable value="#{pessoaBean.pessoas}" var="pessoa">
-			<h:column>
-				<f:facet name="header">Nome</f:facet>
-				<h:outputText value="#{pessoa.nome}" />
-			</h:column>
-			<h:column>
-				<f:facet name="header">email</f:facet>
-				<h:outputText value="#{pessoa.email}" />
-			</h:column>
-	</h:dataTable>
 </h:body>
 </html>

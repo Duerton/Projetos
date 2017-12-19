@@ -38,14 +38,16 @@ function yesnoCheck() {
 		<br/>
 		
 		<h:commandLink value="Voltar para tela inicial" action="inicial"/>
-		<p:dataTable value="#{pessoaBean.pessoas}" var="pessoa">
+		
+		
+		<!-- <p:dataTable value="#{pessoaBean.pessoas}" var="pessoa">
 			<p:column headerText="Pessoa" sortBy="#{pessoa.nome}" filterBy="#{pessoa.nome}">
                 <h:outputText value="#{pessoa.nome}" />
             </p:column>
             <p:column headerText="Email" sortBy="#{pessoa.email}" filterBy="#{pessoa.email}">
                 <h:outputText value="#{pessoa.email}" />
             </p:column>
-		</p:dataTable>
+		</p:dataTable> -->
 		<!-- <h:dataTable value="#{pessoaBean.pessoas}" var="pessoa">
 			<h:column>
 				<f:facet name="header">Nome</f:facet>

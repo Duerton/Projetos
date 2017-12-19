@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 
+import dao.AlunoDao;
 import dao.DAO;
 import modelo.Aluno;
 
@@ -11,6 +12,7 @@ import modelo.Aluno;
 public class AlunoBean {
 
 	private Aluno aluno = new Aluno();
+	private AlunoDao dao = new AlunoDao();
 	
 	public Aluno getAluno() {
 		return this.aluno;

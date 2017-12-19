@@ -1,19 +1,15 @@
 package dao;
 
 import java.util.List;
-import java.util.function.Predicate;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.CriteriaUpdate;
-import javax.persistence.criteria.Join;
-import javax.persistence.criteria.Root;
-import javax.persistence.criteria.SetJoin;
 
 import modelo.Aluno;
+import modelo.Pessoa;
 import modelo.Professor;
 import modelo.Projeto;
 
@@ -41,34 +37,12 @@ public class PessoaDao {
 
         return lista;
     }*/
-
     
-    public List<Projeto> listarTodosProjetos() {
-
+    public void salvar(Pessoa pessoa) {
         em.getTransaction().begin();
-        CriteriaBuilder cb = em.getCriteriaBuilder();
-        CriteriaQuery<Projeto> query = cb.createQuery(Projeto.class);
-        Root<Projeto> root = query.from(Projeto.class);
-
-        query.select(root);
-
-        List<Projeto> lista = null;
-        try {
-            lista = em.createQuery(query).getResultList();
-        } catch(Exception e){
-
-        }
-        em.close();
-
-        return lista;
-    }
-
-    
-    public void salvar(Projeto projeto) {
-        em.getTransaction().begin();
-        em.persist(projeto);
+        em.persist(pessoa);
         em.getTransaction().commit();
-        em.close();
+        
     }
 
     
@@ -90,16 +64,28 @@ public class PessoaDao {
     }
 
     
-    public List<Projeto> buscar(String busca){
-        em.getTransaction().begin();
-        TypedQuery<Projeto> query = em.createQuery("select p from Pessoa p", Projeto.class);
-        List<Projeto> lista = null;
-        try {
-            lista = query.getResultList();
-        } catch(Exception e){
-
-        }
-        em.close();
+    public List<Pessoa> listarTodasPessoas(){
+        TypedQuery<Pessoa> query = em.createQuery("select p from Pessoa p", Pessoa.class);
+        List<Pessoa> lista = query.getResultList();
+        return lista;
+        
+    }
+    
+    public List<Aluno> listarTodosAlunos(){
+        TypedQuery<Aluno> query = em.createQuery("select a from Aluno a", Aluno.class);
+        List<Aluno> lista = query.getResultList();
         return lista;
     }
+    
+    public List<Professor> listarTodosProfessores(){
+        TypedQuery<Professor> query = em.createQuery("select p from Professor p", Professor.class);
+        List<Professor> lista = query.getResultList();
+        return lista;
+    }
+    
+    public Pessoa buscaPeloLogin(String login) {
+		TypedQuery<Pessoa> query = em.createQuery("select p from Pessoa p where p.login = :login", Pessoa.class);
+		query.setParameter("login", login);
+		return query.getSingleResult();
+	}
 }

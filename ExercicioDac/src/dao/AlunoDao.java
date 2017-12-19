@@ -39,6 +39,12 @@ public class AlunoDao {
         em.close();
     }
     
+    public Aluno buscaPorId(Integer id) {
+    	TypedQuery<Aluno> query = em.createQuery("select a from Aluno a where a.id = :id", Aluno.class);
+    	query.setParameter("id", id);
+        return query.getSingleResult();
+    }
+    
     public List<Aluno> listarTodosAlunos(){
         TypedQuery<Aluno> query = em.createQuery("select a from Aluno a", Aluno.class);
         List<Aluno> lista = query.getResultList();
