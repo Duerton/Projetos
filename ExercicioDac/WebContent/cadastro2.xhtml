@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:p="http://primefaces.org/ui">
+		<head><meta http-equiv="refresh" content="0; url=/ExercicioDac/inicio.xhtml" /></head>
+<h:body>
+
+<h:form>  
+    <p:growl id="messages"/>
+ 
+    <p:menubar>
+    	UFFormando
+        <p:menuitem value="Home" href="/ExercicioDac/inicial.xhtml" icon="ui-icon-home" />
+        Aqui você pode pesquisar os projetos finais de todos os alunos e alunoes registrados.
+    </p:menubar>
+</h:form>
+
+
+<h3>Cadastro</h3>
+    <p:tabView orientation="left">
+        <p:tab title="Sou aluno">
+            <p:panelGrid columns="2" cellpadding="10">
+				<p:outputLabel  value="Nome:" for="nome"/>
+				<p:inputText id="nome" value="#{alunoBean.nome}"/>
+				<p:outputLabel  value="Email:" for="email"/>
+				<p:inputText id="email" value="#{alunoBean.email}"/>
+				<p:outputLabel  value="Login:" for="login"/>
+				<p:inputText id="login" value="#{alunoBean.login}"/>
+				<p:outputLabel  value="Senha:" for="senha"/>
+				<p:password id="senha" value="#{alunoBean.senha}"/>	
+				<p:outputLabel  value="Titulacao:" for="titulacao"/>
+				<p:inputText id="titulacao" value="#{alunoBean.titulacao}"/>	
+				<br/>		
+				<p:commandButton value="Cadastrar-se" action="#{alunoBean.salvar}"/>
+            </p:panelGrid>
+        </p:tab>
+        <p:tab title="Sou professor">
+            <h:panelGrid columns="2" cellpadding="10">
+				<p:outputLabel  value="Nome:" for="nome"/>
+				<p:inputText id="nome" value="#{professorBean.nome}"/>
+				<p:outputLabel  value="Email:" for="email"/>
+				<p:inputText id="email" value="#{professorBean.email}"/>
+				<p:outputLabel  value="Login:" for="login"/>
+				<p:inputText id="login" value="#{professorBean.login}"/>
+				<p:outputLabel  value="Senha:" for="senha"/>
+				<p:password id="senha" value="#{professorBean.senha}"/>	
+				<p:outputLabel  value="Titulacao:" for="titulacao"/>
+				<p:inputText id="titulacao" value="#{professorBean.titulacao}"/>	
+				<br/>		
+				<p:commandButton value="Cadastrar-se" action="#{professorBean.salvar}"/>
+            </h:panelGrid>
+        </p:tab>
+    </p:tabView>
+	
+</h:body>
+</html>

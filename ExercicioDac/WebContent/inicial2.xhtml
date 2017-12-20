@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt"
+xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:c="http://java.sun.com/jsf/jstl/core"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:p="http://primefaces.org/ui">
+<head>
+  <title>TrabalhoDac</title>
+  <meta charset="utf-8"></meta>
+  <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+</head>
+<body>
+
+<h:form>  
+    <p:growl id="messages"/>
+ 
+    <p:menubar>
+        <p:menuitem value="Home" href="/ExercicioDac/inicial.xhtml" icon="ui-icon-home" />
+        Aqui você pode pesquisar os projetos finais de todos os alunos e professores registrados.
+    </p:menubar>
+</h:form>
+
+<p:panel id="Entrar" header="Entrar" style="margin-bottom:20px">
+	<p:panelGrid columns="2">
+		<p:outputLabel value="Login: "/>
+		<p:inputText value="#{pessoaBean.pessoa.login}" required="true" id="login" />
+		<p:outputLabel value="Senha: "/>
+		<p:password value="#{pessoaBean.pessoa.senha}" required="true" id="senha" />
+		<br/>
+		<p:commandButton value="Entrar" action="#{pessoaBean.efetuaLogin}"/>
+		<br/>
+		<p:outputLink value="/Exercicio/cadastro.xhtml">Cadastrar-se</p:outputLink>
+	</p:panelGrid>
+</p:panel>
+
+<h:form>
+    <p:dataTable var="projeto" value="#{projetoBean.getProjetos}" widgetVar="projetosTable"
+                 emptyMessage="Nenhum projeto encontrado com dada descrição." filteredValue="#{projetoBean.projetos}">
+ 
+        <f:facet name="header">
+            <p:outputPanel>
+                <h:outputText value="Procurar:" />
+                <p:inputText id="globalFilter" onkeyup="PF('projetosTable').filter()" style="width:150px" placeholder="Digite aqui"/>
+            </p:outputPanel>
+        </f:facet>
+ 
+        <p:column headerText="Id">
+            <h:outputText value="#{projeto.idProjeto}" />
+        </p:column>
+ 
+        <p:column headerText="Título">
+            <h:outputText value="#{projeto.titulo}" />
+        </p:column>
+ 
+        <p:column headerText="Orientador">
+            <h:outputText value="#{projeto.professor.nome}" />
+        </p:column>
+ 
+        <p:column headerText="Alunos">
+            <h:outputText value="#{projeto.aluno}" />
+        </p:column>
+ 
+        <p:column headerText="Resumo">
+            <h:outputText value="#{projeto.resumo}" />
+        </p:column>
+ 
+        <p:column headerText="Bibliografia">
+            <h:outputText value="#{projeto.bibliografia}"/>
+        </p:column>
+    </p:dataTable>
+</h:form>
+
+</body>
+</html>

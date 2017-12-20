@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt"
+xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:c="http://java.sun.com/jsf/jstl/core"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:p="http://primefaces.org/ui">
+<head>
+  <title>TrabalhoDac</title>
+  <meta charset="utf-8"></meta>
+  <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+</head>
+<body>
+
+<h:form>  
+    <p:growl id="messages"/>
+ 
+    <p:menubar>
+    	UFFormando
+        <p:menuitem value="Home" href="/ExercicioDac/alunotcc1.xhtml" icon="ui-icon-home" />
+        Aqui você pode pesquisar os projetos finais de todos os alunos e professores registrados.
+        
+        <f:facet name="options">
+            <p:commandButton style="margin-right:10px" type="button" value="Logout" icon="ui-icon-extlink" action="#{pessoaBean.logout}"/>
+        </f:facet>
+    </p:menubar>
+</h:form>
+
+
+<h3>Bem vindo, #{aluno.nome}!</h3>
+    <p:tabView orientation="left">
+        <p:tab title="Editar dados pessoais">
+            <p:panelGrid columns="2" cellpadding="10">
+				<p:outputLabel  value="Nome:" for="nome"/>
+				<p:inputText id="nome" value="#{alunoBean.nome}"/>
+				<p:outputLabel  value="Email:" for="email"/>	
+				<br/>		
+				<p:commandButton value="Editar" action="#{alunoBean.editar}"/>
+            </p:panelGrid>
+        </p:tab>
+        <p:tab title="Editar projeto">
+            <h:panelGrid columns="2" cellpadding="10">
+				<p:outputLabel  value="Titulo:" for="titulo"/>
+				<p:inputText id="titulo" value="#{projetoBean.titulo}"/>
+				<p:outputLabel  value="Resumo:" for="Resumo"/>
+				<p:inputText id="resumo" value="#{projeto.resumo}"/>
+				<p:outputLabel  value="Login:" for="login"/>
+				<p:inputText id="bibliografia" value="#{projeto.bibliografia}"/>
+				<br/>		
+				<p:commandButton value="Editar" action="#{projetoBean.editar}"/>
+            </h:panelGrid>
+        </p:tab>
+    </p:tabView>
+
+
+<h:form>
+    <p:dataTable var="projeto" value="#{projetoBean.getProjetos}" widgetVar="projetosTable"
+                 emptyMessage="Nenhum projeto encontrado com dada descrição." filteredValue="#{projetoBean.projetos}">
+ 
+        <f:facet name="header">
+            <p:outputPanel>
+                <h:outputText value="Procurar:" />
+                <p:inputText id="globalFilter" onkeyup="PF('projetosTable').filter()" style="width:150px" placeholder="Digite aqui"/>
+            </p:outputPanel>
+        </f:facet>
+ 
+        <p:column headerText="Id">
+            <h:outputText value="#{projeto.idProjeto}" />
+        </p:column>
+ 
+        <p:column headerText="Título">
+            <h:outputText value="#{projeto.titulo}" />
+        </p:column>
+ 
+        <p:column headerText="Orientador">
+            <h:outputText value="#{projeto.professor.nome}" />
+        </p:column>
+ 
+        <p:column headerText="Alunos">
+            <h:outputText value="#{projeto.aluno}" />
+        </p:column>
+ 
+        <p:column headerText="Resumo">
+            <h:outputText value="#{projeto.resumo}" />
+        </p:column>
+ 
+        <p:column headerText="Bibliografia">
+            <h:outputText value="#{projeto.bibliografia}"/>
+        </p:column>
+    </p:dataTable>
+</h:form>
+
+</body>
+</html>

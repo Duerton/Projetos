@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:p="http://primefaces.org/ui">
+
+
+<body>
+	<h1>Projeto</h1>
+	<h:form>
+		<fieldset>
+			<legend>Editar dados do projeto:</legend>
+			<p:panelGrid columns="2">
+				<p:outputLabel  value="Titulo:" for="titulo"/>
+				<p:inputText id="titulo" value="#{projetoBean.projeto.titulo}"/>
+				<p:outputLabel  value="Bibliografia:" for="bibiografia"/>
+				<p:inputText id="bibliografia" value="#{projetoBean.projeto.bibliografia}"/>
+				<p:outputLabel  value="Resumo:" for="resumo"/>
+				<p:inputText id="resumo" value="#{projetoBean.projeto.resumo}"/>
+				<p:outputLabel  value="Nota:" for="nota"/>
+				<p:inputText id="nota" value="#{projetoBean.projeto.nota}"/>
+			</p:panelGrid>
+			
+				<p:commandButton value="Gravar" action="#{projetoBean.gravar}">
+				</p:commandButton>
+		</fieldset>
+		
+		<fieldset>
+			<legend>Selecionar Professor:</legend>
+			<p:outputLabel  value="Selecione orientador:" for="orientador"/>
+				<p:selectOneMenu value="#{projetoBean.idProfessor}">
+					<f:selectItems value="#{professorBean.professores}" var="professor" 
+						itemLabel="#{professor.nome}" itemValue="#{professor.id}"/>
+				</p:selectOneMenu>
+				<p:commandButton value="Escolher orientador" action="#{projetoBean.adicionarProfessor}">
+				</p:commandButton>
+		</fieldset>
+		<fieldset>
+			<legend>Selecionar Aluno:</legend>
+			<p:outputLabel  value="Selecione aluno:" for="aluno"/>
+				<p:selectOneMenu value="#{projetoBean.idAluno}">
+					<f:selectItems value="#{alunoBean.alunos}" var="aluno" 
+						itemLabel="#{aluno.nome}" itemValue="#{aluno.id}"/>
+				</p:selectOneMenu>
+				<p:commandButton value="Escolher aluno" action="#{projetoBean.adicionarAluno}">
+				</p:commandButton>
+		</fieldset>
+	</h:form>
+	
+</body>
+</html>
